@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/go")
+@WebServlet("/notice-reg")
 
-public class Nana extends HttpServlet {
+public class NoticeReg extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		
+		//req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
+		
 		PrintWriter out = resp.getWriter();
 		
-		String temp = req.getParameter("cnt");
-		int cnt = 0;
-		if(temp != null && !temp.equals("")) {
-			cnt = Integer.parseInt(temp);
-		}
+		String title = req.getParameter("title");
+		String content = req.getParameter("content");
 		
-		for(int i = 0; i < cnt; i++) {
-			out.println((i+1) + ": 안녕, Servlet !!<br />");
-		}
+		out.println("<b>제목 : " + title + "</b><br>");
+		out.println("<b>내용 : " + content + "</b>");
+		
 	}
 }
