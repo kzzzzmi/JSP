@@ -43,6 +43,8 @@ public class Calc3 extends HttpServlet {
 			} catch (ScriptException e) {
 				e.printStackTrace();
 			}
+		} else if(operator != null && operator.equals("C")){
+			expression = "C";
 		} else {
 			expression += (value == null) ? "" : value;
 			expression += (operator == null) ? "" : operator;
@@ -50,6 +52,9 @@ public class Calc3 extends HttpServlet {
 		}
 		
 		Cookie c = new Cookie("exp", expression);
+		if(expression.equals("C")) {
+			c.setMaxAge(0);
+		}
 		response.addCookie(c);
 		response.sendRedirect("/calcPage");
 	}
